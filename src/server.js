@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { use } = require('frisby');
 const app = require('./app');
 const userRoute = require('./routes/userRoute');
 const loginRoute = require('./routes/loginRoute');
