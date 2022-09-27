@@ -10,10 +10,10 @@ const create = async (req, res) => {
   }
 };
 
-// const getAll = async (_req, res) => {
-//   const users = await CategoryService.getAll();
-//   return res.status(200).json(users);
-// };
+const getAll = async (_req, res) => {
+  const categories = await CategoryService.getAll();
+  return res.status(200).json(categories);
+};
 
 // const getById = async (req, res) => {
 //   const { id } = req.params;
@@ -27,6 +27,6 @@ const create = async (req, res) => {
 
 module.exports = {
   create,
-  // getAll,
+  getAll,
   // getById,
 };

@@ -14,12 +14,10 @@ const create = async (name) => {
   return newCategory;
 };
 
-// const getAll = () => {
-//   const categories = Category.findAll({
-//     attributes: { exclude: ['password'] },
-//   });
-//   return categories;
-// };
+const getAll = () => {
+  const categories = Category.findAll();
+  return categories;
+};
 
 // const getById = async (id) => {
 //   const categories = await Category.findByPk(id, {
@@ -30,6 +28,6 @@ const create = async (name) => {
 
 module.exports = {
   create,
-  // getAll,
+  getAll,
   // getById,
 };
