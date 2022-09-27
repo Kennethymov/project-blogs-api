@@ -30,16 +30,14 @@ console.log(user);
 
 const getAll = () => {
   const users = User.findAll({
-    attributes: { exclude: ['password'],
-  },
+    attributes: { exclude: ['password'] },
   });
   return users;
 };
 
 const getById = async (id) => {
   const user = await User.findByPk(id, {
-    attributes: { exclude: ['password'],
-  },
+    attributes: { exclude: ['password'] },
   });
   return user;
 };
