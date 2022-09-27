@@ -28,7 +28,16 @@ console.log(user);
   return token;
 };
 
+const getAll = () => {
+  const users = User.findAll({
+    attributes: { exclude: ['password'],
+  },
+  });
+  return users;
+};
+
 module.exports = {
   getByEmail,
   create,
+  getAll,
 };
