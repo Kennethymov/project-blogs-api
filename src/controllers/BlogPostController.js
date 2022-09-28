@@ -4,13 +4,16 @@ const CategoryService = require('../services/CategoryService');
 const create = async (req, res) => {
   try {
     const { title, content, categoryIds } = req.body;
-    Promise.all(categoryIds.map(async (categoryId) => {
+    const errosCategories = [];
+    await Promise.all(categoryIds.map(async (categoryId) => {
       const category = await CategoryService.getById(categoryId);
-      if (!category) {
-        return res.status(400).json({ message: '"categoryIds" not found' });
-      }
+      if (!category) { errosCategories.push(categoryId); }
       return categoryId;
-    })); 
+    }));
+
+    if (errosCategories.length > 0) {
+      return res.status(400).json({ message: '"categoryIds" not found' });
+    } 
 
     const { id: userId } = req.user;
     const newBlogPost = await BlogPostService.create(title, content, categoryIds, userId);
