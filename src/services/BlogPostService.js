@@ -40,15 +40,26 @@ const getAll = async () => {
   return blogPosts;
 };
 
-// const getById = async (id) => {
-//   const categories = await BlogPost.findByPk(id, {
-//     attributes: { exclude: ['password'] },
-//   });
-//   return categories;
-// };
+const getById = async (id) => {
+  const categories = await BlogPost.findByPk(id, {
+    include: [{
+      model: User,
+      required: true,
+      attributes: ['id', 'displayName', 'email', 'image'],
+      as: 'user',
+    },
+    {
+      model: Category,
+      required: true,
+      attributes: ['id', 'name'],
+      as: 'categories',
+    }],
+  });
+  return categories;
+};
 
 module.exports = {
   create,
   getAll,
-  // getById,
+  getById,
 };

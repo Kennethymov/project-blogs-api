@@ -28,18 +28,19 @@ const getAll = async (_req, res) => {
   const blogPosts = await BlogPostService.getAll();
   return res.status(200).json(blogPosts);
 };
-// const getById = async (req, res) => {
-//   const { id } = req.params;
-//   console.log(id);
-//   const blogPost = await BlogPostService.getById(id);
-//   if (!blogPost) {
-//     return res.status(404).json({ message: 'blogPost does not exist' });
-//   }
-//   return res.status(200).json(blogPost);
-// };
+
+const getById = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const blogPost = await BlogPostService.getById(id);
+  if (!blogPost) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+  return res.status(200).json(blogPost);
+};
 
 module.exports = {
   create,
   getAll,
-  // getById,
+  getById,
 };
