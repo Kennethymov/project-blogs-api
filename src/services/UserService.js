@@ -5,7 +5,9 @@ require('dotenv/config');
 const secret = process.env.JWT_SECRET || 'suaSenhaSecreta';
 
 const getByEmail = async (email) => {
-  const user = await User.findOne({ where: { email } });
+  const user = await User.findOne({ where: { email } }, {
+    attributes: { exclude: ['password'] },
+  });
   return user;
 };
 
