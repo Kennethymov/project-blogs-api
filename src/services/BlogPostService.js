@@ -1,4 +1,4 @@
-const { BlogPost, sequelize, PostCategory } = require('../models');
+const { BlogPost, sequelize, PostCategory, User, Category } = require('../models');
 
 const create = async (title, content, categoryIds, userId) => {
   const blogPost = await BlogPost.findOne({ where: { title } });
@@ -22,10 +22,23 @@ const create = async (title, content, categoryIds, userId) => {
   }
 };
 
-// const getAll = () => {
-//   const blogPosts = BlogPost.findAll();
-//   return blogPosts;
-// };
+const getAll = async () => {
+  const blogPosts = await BlogPost.findAll({
+    include: [{
+      model: User,
+      required: true,
+      attributes: ['id', 'displayName', 'email', 'image'],
+      as: 'user',
+    },
+    {
+      model: Category,
+      required: true,
+      attributes: ['id', 'name'],
+      as: 'categories',
+    }],
+  });
+  return blogPosts;
+};
 
 // const getById = async (id) => {
 //   const categories = await BlogPost.findByPk(id, {
@@ -36,6 +49,6 @@ const create = async (title, content, categoryIds, userId) => {
 
 module.exports = {
   create,
-  // getAll,
+  getAll,
   // getById,
 };
