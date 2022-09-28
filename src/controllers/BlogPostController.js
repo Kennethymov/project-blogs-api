@@ -25,7 +25,6 @@ const create = async (req, res) => {
 //   const blogPosts = await BlogPostService.getAll();
 //   return res.status(200).json(blogPosts);
 // };
-
 // const getById = async (req, res) => {
 //   const { id } = req.params;
 //   console.log(id);
