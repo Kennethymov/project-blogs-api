@@ -31,7 +31,6 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const blogPost = await BlogPostService.getById(id);
   if (!blogPost) {
     return res.status(404).json({ message: 'Post does not exist' });
@@ -39,8 +38,28 @@ const getById = async (req, res) => {
   return res.status(200).json(blogPost);
 };
 
+const updateById = async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+  const { id: userId } = req.user;
+  const { userId: userIdPost } = await BlogPostService.getById(id);
+
+  if (!title || !content) {
+    return res.status(400).json({ message: 'Some required fields are missing' });
+  }
+
+  if (userId !== userIdPost) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  const updatedBlogPost = await BlogPostService.updateById(id, title, content);
+  console.log(updatedBlogPost);
+  return res.status(200).json(updatedBlogPost);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  updateById,
 };
