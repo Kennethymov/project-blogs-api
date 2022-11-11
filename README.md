@@ -52,7 +52,6 @@ Nessa requisição é necessário informar o seguinte JSON:
 | `POST` | Criar um novo usuário e retorna o token | http://localhost:3000/user |
 | `GET` | Retorna os dados não sensíveis de todos os usuário | http://localhost:3000/user |
 | `GET` | Retorna os dados não sensíveis de um usuário específico | http://localhost:3000/user/:id |
-| `DELETE` | Deleta os dados do usuário através da informação do token | http://localhost:3000/user/me |
 
 
 Na requisição POST, é necessário informar a os dados o usuário no formato a seguir:
@@ -90,8 +89,6 @@ Na requisição POST, é necessário informar a o nome da categoria no formato a
 | `GET` | Retorna todos os post contendo o usuário criador e as categorias | http://localhost:3000/post |
 | `GET` | Retorna um post específico contendo o usuário criador e as categorias | http://localhost:3000/post/:id |
 | `PUT` | Altera o título e o conteúdo de um post específico | http://localhost:3000/post/:id |
-| `DELETE` | Deleta um post específico | http://localhost:3000/post/:id |
-| `GET` | Filtra os post referente a informação passada como query | http://localhost:3000/post/search?q=:searchTerm |
 
 Na requisição POST, é necessário informar a os dados do post no formato a seguir:
 
